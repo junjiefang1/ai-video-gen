@@ -1,0 +1,23 @@
+# 1. 确认nginx已安装且文件存在
+ls /var/www/ai-video-gen/index.html
+nginx -t
+
+# 2. 启动nginx（如果还没运行）
+systemctl start nginx
+systemctl enable nginx
+
+# 3. 确认nginx在监听80端口
+ss -tlnp | grep :80
+
+# 4. 启动Cloudflare Tunnel（让外网能访问）
+nohup cloudflared tunnel --url http://localhost:80 > /tmp/tunnel.log 2>&1 &
+
+# 5. 等3秒后查看URL
+sleep 3
+cat /tmp/tunnel.log | grep trycloudflare
+
+执行完后把显示的 https://xxx.trycloudflare.com URL 发给我验证。
+
+
+cat /tmp/tunnel.log | grep -o 'https://.*trycloudflare.com'
+https://ben-anne-also-reports.trycloudflare.com

@@ -1,0 +1,26 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+*.tsbuildinfo
+
+# vendored ffmpeg.wasm binaries (copied from @ffmpeg/core, see README)
+public/ffmpeg/
+
+# deploy artifacts (rebuild from source instead)
+deploy/*.zip
+
+# secrets — never commit
+Alicloud AccessKey.csv
+*.csv
+.env
+.env.*
+*.pem
+*.key
+
+# windows reserved-name artifact
+/nul
+
+# logs
+*.log

@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 224 71% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 83% 58%;
+    --radius: 0.75rem;
+    --surface: 220 16% 94%;
+    --surface-foreground: 224 71% 4%;
+  }
+
+  .dark {
+    --background: 228 25% 8%;
+    --foreground: 220 20% 95%;
+    --card: 226 25% 11%;
+    --card-foreground: 220 20% 95%;
+    --popover: 226 25% 11%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 262 83% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 226 20% 16%;
+    --secondary-foreground: 220 20% 80%;
+    --muted: 226 20% 16%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 226 20% 16%;
+    --accent-foreground: 220 20% 95%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 226 18% 18%;
+    --input: 226 18% 18%;
+    --ring: 262 83% 62%;
+    --surface: 226 22% 13%;
+    --surface-foreground: 220 20% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(262 83% 62%), hsl(220 90% 56%));
+  }
+  .gradient-surface {
+    background: linear-gradient(180deg, hsl(var(--card)), hsl(var(--surface)));
+  }
+  .shadow-glow {
+    box-shadow: 0 0 40px hsl(262 83% 62% / 0.15), 0 0 80px hsl(220 90% 56% / 0.08);
+  }
+  .shadow-card {
+    box-shadow: 0 4px 24px hsl(var(--background) / 0.5), 0 1px 4px hsl(0 0% 0% / 0.1);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(262 83% 72%), hsl(220 90% 66%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .border-gradient {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(262 83% 62% / 0.3), hsl(220 90% 56% / 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .upload-zone {
+    border: 2px dashed hsl(var(--border));
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .upload-zone:hover {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.05);
+  }
+}
